@@ -2,8 +2,7 @@ const Patient = document.querySelector("#Patient");
 const Doctor = document.querySelector("#Doctor");
 const LogP = document.querySelector("#LogP");
 const LogD = document.querySelector("#LogD");
-const Table = document.querySelector("#table");
-const table = document.querySelector(".table");
+
 
 
 Doctor.addEventListener(

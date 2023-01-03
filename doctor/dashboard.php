@@ -8,7 +8,6 @@ $pet = $_SESSION['doctor'];
  $sql = "SELECT * FROM doctors WHERE id = '$pet'";
  $query = mysqli_query($dbconnect, $sql);
 $userData = mysqli_fetch_assoc($query);
-//var_dump($userData);
 ?>
 
 <!DOCTYPE html>
@@ -23,9 +22,11 @@ $userData = mysqli_fetch_assoc($query);
     <link rel="stylesheet" href="..\assets\css\bootstrap5.min.css">
     <link rel="stylesheet" href="..\assets\lib\fontawsome\css\all.css">
     <link rel="stylesheet" href="..\assets\css\style.css">
+    <link rel="shortcut icon" href="..\..\assets\img\pngwing.com.png">
 
     <?php
-    require_once "..\assets\includes\dash_nav.php"
+    require_once "..\assets\includes\doctorDash.php"
+    
     ?>
     <?php
     echo successMsg();
@@ -42,9 +43,13 @@ $userData = mysqli_fetch_assoc($query);
             </div>
     </div> -->
 
-    <div class="table-responsive shadow mt-5">
-      <h4 class = "text-center">Appointment Book</h4>
-    <table class="table">
+    
+
+    <div class="container shadow">
+    <div class="table-responsive mt-5">
+      <h3 class = "text-center">Welcome to <?php echo $userData ['specialization'] ?> Desk </h3>
+      <h5 class = "text-center">Appointment Book</h5>
+    <table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">Number</th>
@@ -58,7 +63,7 @@ $userData = mysqli_fetch_assoc($query);
   <tbody>
   <?php
       $pat = $userData ["specialization"];
-      $sql = "SELECT * FROM appointment Where specialist = '$pat'";
+      $sql = "SELECT * FROM appointment Where specialist = '$pat' ";
       $query = mysqli_query($dbconnect,$sql);
     //  $row = mysqli_fetch_assoc($query) ;
       //var_dump($row);
@@ -70,8 +75,20 @@ $userData = mysqli_fetch_assoc($query);
       <!-- <td><?php echo $row['fee']; ?></td> -->
       <td><?php echo $row['date_created']; ?></td> 
       <td><?php echo $row['time_created']; ?></td> 
-      <!-- <td> <a href="..\assets\config\delete_control.php?del=<?php echo $userData['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete <?php echo strtoupper($userData['Sname']); ?> account?')"><i class="fa fa-trash"></i>
-        </a></td>  -->
+      <td>
+        <?php 
+        if ($row['d_status'] == '0') {
+          echo "Active";
+        }
+        elseif ($row['d_status'] == '1') {
+          echo "Canceled by patient";
+        }
+        else {
+          echo "Canceled by Doctor";
+        }; ?>
+      </td> 
+      <td> <a href="../assets\config\appointment_config.php?Can=<?php echo $row['id']; ?>" class="btn btn-danger <?php echo ($row['d_status'] > '0')?'d-none':''; ?> ">Cancel</a></a>
+            </a></td>
       
     </tr>
     </tbody>
@@ -79,6 +96,7 @@ $userData = mysqli_fetch_assoc($query);
        }
  ?>
 </table>
+    </div>
     </div>
 
 

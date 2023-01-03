@@ -6,7 +6,7 @@ $pd = $_SESSION['patient'];
 $sql = "SELECT * FROM patient WHERE id = '$pd'";
 $query = mysqli_query($dbconnect, $sql);
 $userData = mysqli_fetch_assoc($query);
-//var_dump($userData);
+// var_dump($userData);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +19,8 @@ $userData = mysqli_fetch_assoc($query);
     <link rel="stylesheet" href="../assets\css\bootstrap5.min.css">
     <link rel="stylesheet" href="../assets\lib\fontawsome\css\all.css">
     <link rel="stylesheet" href="../assets\css\style.css">
+    <link rel="shortcut icon" href="../assets\img\pngwing.com.png">
+
 </head>
 <body>
 <section>
@@ -52,7 +54,8 @@ $userData = mysqli_fetch_assoc($query);
     </div>
 
 
-<button class = "btn btn-outline-dark" id = "table">View Patient Record</button>
+<button class = "btn btn-outline-dark" id = "viewPat">View Patient Record</button>
+<button class = "btn btn-outline-dark" id = "viewPat">Appointment History</button>
 <button class = "btn btn-outline-dark" id = "viewDoc">Doctor Record</button>
 
    <!-- Button trigger modal -->
@@ -60,7 +63,10 @@ $userData = mysqli_fetch_assoc($query);
     Add Doctor
 </button>
 
-<table class="viewD d-none ">
+
+<div class ="container my-4" >
+       
+<table class=" table viewD table-hover d-none ">
   <thead>
     <tr>
       <th scope="col">Number</th>
@@ -86,31 +92,32 @@ $userData = mysqli_fetch_assoc($query);
       <td>
        <a href="..\assets\config\docdel_control.php?del=<?php echo $userDat['id'];?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete <?php echo strtoupper($userDat['full_name']); ?> account?')"><i class="fa fa-trash"></i></a>
     </td>
+      <td>
+       <a href="doctorprofile.php?update=<?php echo $userDat['id'];?>" class="btn btn-success btn-sm" onclick="return confirm('Are you sure you want to update <?php echo strtoupper($userDat['full_name']); ?> account?')"><i class=" fa fa-edit"></i></a>
+    </td>
     </tr>
     </tbody>
  <?php
  }
  ?>
 </table>
+</div>
+<div class ="container my-4 shadow" >
 
-   <div class ="container my-4" >
-       
-    </div>
-
- <table class="table d-none">
+ <table class="table table-hover viewP d-none">
   <thead>
     <tr>
       <th scope="col">Number</th>
       <th scope="col">First</th>
       <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-      <th scope="col">Handle</th>
+      <th scope="col">email</th>
+      <!-- <th scope="col">Handle</th> -->
     </tr>
   </thead>
   <!-- patient record -->
     <?php 
     while ($userData = mysqli_fetch_assoc($query)) { 
-        //var_dump($userData);
+        // var_dump($userData);
         ?>    
     
   <tbody>
@@ -129,10 +136,8 @@ $userData = mysqli_fetch_assoc($query);
  }
  ?>
 </table>
-
-   <div class ="container my-4" >
-       
-    </div>
+    
+</div>
     
 </section>
 
@@ -175,10 +180,18 @@ $userData = mysqli_fetch_assoc($query);
 </section>
 <script src="..\assets\js\bootstrap.bundle.min.js"></script>
 <script src="..\assets\js\main.js"></script>
+
+  <section>
+    <!-- appointment history -->
+
+  </section>
+
 </body>
 </html>
 
 <script>
+  const Table = document.querySelector("#viewPat");
+  const table = document.querySelector(".viewP");
   const viewDoc = document.querySelector("#viewDoc");
   const viewD = document.querySelector(".viewD");
 

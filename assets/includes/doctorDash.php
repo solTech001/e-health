@@ -19,11 +19,7 @@
                 Dropdown button
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="..\assets\config\login_Config.php">Logout</a></li>
-                <?php if ($userData["user_role"] != "Admin"){ ?>
-                  <li><a class="dropdown-item" href="profile.php">Profile</a></li>
-                  <?php } ?>            
-                
+                <li><a class="dropdown-item" href="..\assets\config\login_Config.php">Logout</a></li>         
             </ul>
         </div>
       </div>

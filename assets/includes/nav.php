@@ -10,16 +10,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="">Home</a>
+                    <a class="nav-link active" aria-current="page" href="index">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="">About Us</a>
+                    <a class="nav-link active" aria-current="page" href="#card">About Us</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="contact">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="service">Our service</a>
+                    <a class="nav-link active" aria-current="page" href="#card">Our service</a>
                 </li>
             </ul>
 

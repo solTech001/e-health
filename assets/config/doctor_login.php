@@ -30,7 +30,7 @@ include_once "../includes/session.php";
       }
       else {
          $_SESSION['doctor'] = $row['id'];
-         header("Location:../../doctor/dashbord");
+         header("Location:../../doctor/dashboard");
       }
    }
  }

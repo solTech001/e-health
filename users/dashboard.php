@@ -4,11 +4,11 @@ require "..\assets\config\dbconnect.php";
 // current user
 $user =  $_SESSION['patient'];
 isLogIn();
-// var_dump($user);
+//  var_dump($user);
 $sql = "SELECT * FROM patient WHERE id = '$user' ";
 $query = mysqli_query($dbconnect, $sql);
-$userdata = mysqli_fetch_assoc($query);
-// var_dump($userdata);
+$userData = mysqli_fetch_assoc($query);
+//var_dump($userData);
 ?>
 
 
@@ -23,6 +23,7 @@ $userdata = mysqli_fetch_assoc($query);
     <link rel="stylesheet" href="..\assets\css\bootstrap5.min.css">
     <link rel="stylesheet" href="..\assets\lib\fontawsome\css\all.css">
     <link rel="stylesheet" href="..\assets\css\style.css">
+    <link rel="shortcut icon" href="../assets\img\pngwing.com.png">
 </head>
 <body>
   <section>
@@ -32,7 +33,7 @@ $userdata = mysqli_fetch_assoc($query);
     ?>
   </section>
   <section>
-    <h4 class ="text-center">Welcome <?php echo $userdata['Fname']." ".$userdata['Sname'];?>!</h4>
+    <h4 class ="text-center">Welcome <?php echo $userData['Fname']." ".$userData['Sname'];?>!</h4>
    <div class="container-fluid row text-center">
       <div class="col-sm-4">
           <div class="dropdown">
@@ -40,8 +41,10 @@ $userdata = mysqli_fetch_assoc($query);
           Dashbaord
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Book Appointment</a></li>
-          <li><a class="dropdown-item" href="#">Appointment History</a></li>
+          <li><button type="button" class="btn btn-outline-dark mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Book Appointment
+          </button></li>
+          <li><button class="btn btn-outline-dark mt-2" id = "appoint">Appointment History</button></li>
           <li><a class="dropdown-item" href="profile.php">Profile</a></li>
         </ul>
   </div>
@@ -56,7 +59,7 @@ $userdata = mysqli_fetch_assoc($query);
       </div>
       <div class="col-sm-4 pt-4">
       <i class="fa fa-puzzle-piece d-block fs-3"></i>
-       <button class="btn btn-outline-dark mt-2">Appointment History</button>
+       <button class="btn btn-outline-dark mt-2" id = "appoint">Appointment History</button>
       </div>
    </div>
 
@@ -74,7 +77,7 @@ $userdata = mysqli_fetch_assoc($query);
       <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Book an Appointment</h1>
     
         <label class="form-label">Patient Number</label>
-      <input type="text" value=" <?php echo $userdata['patient_id'];?>" name="patNum" class="form-control mb-3" readonly="true" required>
+      <input type="text" value=" <?php echo $userData['patient_id'];?>" name="patNum" class="form-control mb-3" readonly="true" required>
       <label class="form-label">Doctors</label>
       <select class ="form-control mb-3 " name="specialization">
                 <option>Pediatrics</option>
@@ -103,7 +106,7 @@ $userdata = mysqli_fetch_assoc($query);
 
 <!-- table -->
 
-<div class="table-responsive shadow">
+<div class="table-responsive shadow container">
 <h4 class="text-center pt-5">
   Appointment History
   </h4>
@@ -120,7 +123,7 @@ $userdata = mysqli_fetch_assoc($query);
   </thead>
   <tbody>
     <?php
-      $preUser = $userdata['patient_id'];
+      $user = $userData['patient_id'];
       $sql = "SELECT * FROM appointment";
       $query = mysqli_query($dbconnect, $sql);
       $row = mysqli_fetch_assoc($query);
@@ -132,6 +135,17 @@ $userdata = mysqli_fetch_assoc($query);
       <td><?php echo $row["fee"]; ?></td>
       <td><?php echo $row["date_created"]; ?></td>
       <td><?php echo $row["time_created"]; ?></td>
+      <td><?php  if ($row['d_status'] == '0') {
+       echo "Active";
+      }
+      elseif ($row['d_status'] == '1') {
+        echo "Canceled by you";
+      }
+      else {
+        echo "Canceled by Doctor";
+      }; ?> </td>
+      <td> <a href="../assets\config\appointment_config.php?ver=<?php echo $row['id']; ?>" class="btn btn-danger <?php echo ($row['d_status'] > '0')?'d-none':''; ?>">Cancel</a>
+      </td>
     </tr>
     <?php 
       }
@@ -141,14 +155,21 @@ $userdata = mysqli_fetch_assoc($query);
 </div>
 
 
-
-
-
-
-
-
-
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 
+<!-- sript for appointment -->
+
+<script>
+
+  const table = document.querySelector(".table-responsive")
+  const appoint = document.querySelector("#appoint")
+  
+  appoint.addEventListener(
+'click', ()=>{
+  table.classList.toggle("d-none")
+}
+)
+
+</script>

@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="assets\css\bootstrap5.min.css">
     <link rel="stylesheet" href="assets\lib\fontawsome\css\all.css">
     <link rel="stylesheet" href="assets\css\style.css">
+    <link rel="shortcut icon" href="assets\img\pngwing.com.png">
+
 </head>
 <body>
 <section>

@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="shortcut icon" href="assets\img\pngwing.com.png">
     <link rel="stylesheet" href="assets\css\bootstrap5.min.css">
     <link rel="stylesheet" href="assets\lib\fontawsome\css\all.css">
     <link rel="stylesheet" href="assets\css\style.css">
@@ -22,8 +23,8 @@
     <section>
     <div class ="container my-4" >
         <div class ="d-flex align-items-center gap-5 py-4"  >
-            <button class="btn btn-outline-dark" id = "Patient">Login as Patient</button>
-            <button class="btn btn-outline-dark" id= "Doctor">Login as Doctor</button>
+            <button class="btn btn-outline-dark  text-light fw-bold btn-success" id = "Patient">Login as Patient</button>
+            <button class="btn btn-outline-dark text-light fw-bold btn-info" id= "Doctor">Login as Doctor</button>
         </div>
         <?php
         echo errorMsg() ?>
@@ -40,7 +41,7 @@
                 <h3 class="text-center">Login as Doctor</h3>
                 <input type="text" name ="email" class ="form-control mb-3 " placeholder="Email*">
                 <input type="text" name ="pass" class ="form-control mb-3 " placeholder="Password">
-                <input type="submit" class = "btn btn-outline-dark mb-3" name = "login_doctor" value = "Login">
+                <input type="submit" class = "btn btn-outline-primary mb-3" name = "login_doctor" value = "Login">
         </form>
     </div>
     </section>
