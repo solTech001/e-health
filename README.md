@@ -8,7 +8,7 @@ teleconsultation, etc.
 ![localhost_e-health_(iPhone 12 Pro) (2)](https://user-images.githubusercontent.com/111451740/211267957-80da16e4-b35a-4a93-9d5f-b6a71473b3e8.png)
   This is the index page on mobile, it is a mobile responsive software
 ![patient history](https://user-images.githubusercontent.com/111451740/211267978-87b3048d-e9a4-4da1-aea8-6c5b746c1667.JPG)
-  This the the section that show case the patient history.
+  This is the section that showcase the patient history.
 ![patient log](https://user-images.githubusercontent.com/111451740/211267981-6316e86d-c984-4526-b1b2-1d35ba355e58.JPG)
   this is the login Page
 ![patient profile](https://user-images.githubusercontent.com/111451740/211267986-ddeaf2e9-3f4b-409d-83bd-749aa0f8b17c.JPG)
@@ -31,6 +31,4 @@ teleconsultation, etc.
 ![doctor record](https://user-images.githubusercontent.com/111451740/211268024-37f95836-ba2b-4c34-b0a2-a08fb49b705d.JPG)
   doctor can view all record.
 ![doctor sesion](https://user-images.githubusercontent.com/111451740/211268026-03206c5b-67a5-44d6-81be-fdf3ae453a4b.JPG)
-  this is a doctor session. Doctor can perform two operation either to apporove appointment book by patient or cancel it.
-  
-  
+  this is a doctor session. Doctor can perform two operation either to
